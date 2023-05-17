@@ -1,0 +1,23 @@
+import random
+
+tries_left = 2
+score = 0
+ 
+while tries_left > 0:
+    with open("Songs.txt", "r") as songs_file:
+        with open("Artists.txt", "r") as artists_file:
+            songs_and_artists = [(songs.rstrip('\n'), artists.rstrip('\n'))
+                                      for (songs, artists) in zip(songs_file, artists_file)]
+            random_song, random_artist = random.choice(songs_and_artists)
+            songs_intials = "".join(item[0].upper() for item in random_song.split())
+            print("The songs' initials are", songs_intials, "and the name of the artist is", random_artist)
+            guess = input("Guess the name of the song! ")
+            tries_left = tries_left - 1
+    if guess == random_song:
+        print("Well Done!")
+        score = score + 1
+        print("Your Score Is", score)
+        tries_left = 2
+    else:
+        guess = input("Nope! Try Again! Guess the name of the song again! ")
+        tries_left = tries_left - 1
