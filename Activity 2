@@ -1,0 +1,45 @@
+# MUSIC GAME !
+
+import random
+
+import time
+
+import sys
+
+import linecache
+
+userscore = 0
+
+def main(): 
+ 
+guess1 = None
+random_picker = random.randint(1,7)
+
+file = open("Songs.txt", "r")
+
+# Song list
+song = linecache.getline(r"Songs.txt", random_picker).upper()
+print(song)    
+song_prompt = song.split()
+
+# Artist list
+file = open("Artists.txt", "r")
+artist = linecache.getline(r"Artists.txt", random_picker)
+
+for word in song_prompt:
+    print(word[0])
+    print("by " + artist)
+
+while song != guess1:
+
+ guess1 = str(input("Front letter have been given, guess the song name: "))
+
+
+if guess1 == song:
+    print("Well done!")
+    userscore = userscore + 1
+    print("Your score is " + str(userscore) + ".")
+
+else:
+    print("Wrong guess.")
+main()
